@@ -54,31 +54,31 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  File? image;
+  File? video;
 
-  Future pickImage() async {
+  Future pickVideo() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final video = await ImagePicker().pickVideo(source: ImageSource.gallery);
 
-      if(image == null) return;
+      if(video == null) return;
 
-      final imageTemp = File(image.path);
+      final imageTemp = File(video.path);
 
-      setState(() => this.image = imageTemp);
+      setState(() => this.video = imageTemp);
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
   }
 
-  Future pickImageC() async {
+  Future pickVideoC() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+      final video = await ImagePicker().pickVideo(source: ImageSource.camera);
 
-      if(image == null) return;
+      if(video == null) return;
 
-      final imageTemp = File(image.path);
+      final imageTemp = File(video.path);
 
-      setState(() => this.image = imageTemp);
+      setState(() => this.video = imageTemp);
     } on PlatformException catch(e) {
       print('Failed to pick image: $e');
     }
@@ -96,29 +96,29 @@ class _MyHomePageState extends State<MyHomePage> {
             MaterialButton(
                 color: Colors.blue,
                 child: const Text(
-                    "Pick Image from Gallery",
+                    "Pick Video from Gallery",
                   style: TextStyle(
                     color: Colors.white70, fontWeight: FontWeight.bold
                   )
                 ),
                 onPressed: () {
-                  pickImage();
+                  pickVideo();
                 }
             ),
             MaterialButton(
                 color: Colors.blue,
                 child: const Text(
-                    "Pick Image from Camera",
+                    "Pick Video from Camera",
                     style: TextStyle(
                         color: Colors.white70, fontWeight: FontWeight.bold
                     )
                 ),
                 onPressed: () {
-                  pickImageC();
+                  pickVideoC();
                 }
             ),
             SizedBox(height: 20,),
-            image != null ? Image.file(image!): Text("No image selected")
+            video != null ? Image.file(video!): Text("No image selected")
           ],
         ),
       )
